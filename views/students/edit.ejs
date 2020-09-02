@@ -1,0 +1,302 @@
+<%- include('../partials/header')%>
+<div class="container">
+  <h1 id="head" class="mb-4">Edit Student Details</h1>
+  <div class="card bg-light border-dark">
+    <div class="card-body">
+      <h4 class="card-title">Student Details:</h4>
+      <hr class="my-3 pb-3" />
+      <form
+        action="/grades/<%=grade._id%>/students/<%=student._id%>?_method=PUT"
+        method="POST"
+      >
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="card-title">Student Details:</h4>
+          </div>
+          <div class="col-md-6">
+            <h6 class="ml-4 float-right">
+              <div class="form-check form-check-inline">
+                <input required class="form-check-input" type="radio"
+                id="inlineCheckbox1" value="Boy" name="student[gender]" <%=
+                student.gender === 'Boy' ? 'checked' : '' %> >
+                <label class="form-check-label" for="inlineCheckbox1"
+                  >Boy</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input required class="form-check-input" type="radio"
+                id="inlineCheckbox2" value="Girl" name="student[gender]" <%=
+                student.gender === 'Girl' ? 'checked' : '' %> />
+                <label class="form-check-label" for="inlineCheckbox2"
+                  >Girl</label
+                >
+              </div>
+            </h6>
+          </div>
+        </div>
+        <div class="form-row pb-2">
+          <div class="form-group col-md-6 px-2">
+            <input
+              type="text"
+              name="student[name]"
+              class="form-control"
+              placeholder="Name"
+              value="<%=student.name%>" required
+            />
+          </div>
+          <div class="form-group col-md-6 px-2">
+            <input
+              type="number"
+              name="student[adNo]"
+              class="form-control"
+              placeholder="Admission Number"
+              value="<%=student.adNo%>" required
+            />
+          </div>
+        </div>
+        <div class="form-row pb-2">
+          <div class="form-group col-md-6 px-2">
+            <input
+              type="text"
+              name="student[dateOfBirth]"
+              class="form-control"
+              placeholder="YYYY/MM/DD"
+              min="2015-01-01"
+              max="2020-12-01"
+              value="<%= student.dateOfBirth ? student.dateOfBirth.toDateString() : '' %>" required
+            />
+          </div>
+          <div class="form-group col-md-6 px-2">
+            <input
+              type="number"
+              name="student[phoneNo]"
+              class="form-control"
+              placeholder="Contact Number"
+              value="<%=student.phoneNo%>" required
+            />
+          </div>
+        </div>
+        <div class="form-row pb-2">
+          <div class="form-group col-md-6 px-2">
+            <input
+              type="number"
+              name="student[adharNo]"
+              class="form-control"
+              placeholder="Aadhaar Card Number"
+              value="<%=student.adharNo%>" required
+            />
+          </div>
+          <div class="form-group col-md-6 px-2">
+            <input
+              type="text"
+              name="student[dateOfAdmission]"
+              class="form-control"
+              placeholder="YYYY/MM/DD"
+              min="2015-01-01"
+              max="2020-12-01"
+              value="<%= student.dateOfAdmission ? student.dateOfAdmission.toDateString() : '' %>" required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 p-2">
+            <div class="card bg-light border-dark card-body">
+              <h5 class="card-title">Father's Details:</h5>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="student[father.name]"
+                  placeholder="Name"
+                  class="form-control"
+                  value="<%=student.father.name%>" required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="student[father.occupation]"
+                  placeholder="Occupation"
+                  class="form-control"
+                  value="<%=student.father.occupation%>" required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  name="student[father.income]"
+                  placeholder="Income"
+                  class="form-control"
+                  value="<%=student.father.income%>" required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 p-2">
+            <div class="card bg-light border-dark card-body">
+              <h5 class="card-title">Mother's Details:</h5>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="student[mother.name]"
+                  placeholder="Name"
+                  class="form-control"
+                  value="<%=student.mother.name%>" required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="student[mother.occupation]"
+                  placeholder="Occupation"
+                  class="form-control"
+                  value="<%=student.mother.occupation%>" required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  name="student[mother.income]"
+                  placeholder="Income"
+                  class="form-control"
+                  value="<%=student.mother.income%>" required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row pt-2">
+          <div class="col-md-3 px-2">
+            <div class="form-group">
+              <input
+                type="text"
+                name="student[religion]"
+                placeholder="Religion"
+                class="form-control"
+                value="<%=student.religion%>" required
+              />
+            </div>
+          </div>
+          <div class="col-md-3 px-2">
+            <div class="form-group">
+              <input
+                type="text"
+                name="student[caste]"
+                placeholder="Caste"
+                class="form-control"
+                value="<%=student.caste%>" required
+              />
+            </div>
+          </div>
+          <div class="col-md-3 px-2">
+            <div class="form-group">
+              <select
+                id="inputState"
+                name="student[category]"
+                class="form-control" required
+              >
+                <option value="OBC" <%= student.category === 'OBC' ? 'selected' : ''%> >OBC</option>
+                <option value="OEC" <%= student.category === 'OEC' ? 'selected' : ''%> >OEC</option>
+                <option value="FC" <%= student.category === 'FC' ? 'selected' : ''%>>FC</option>
+                <option value="SC" <%= student.category === 'SC' ? 'selected' : ''%>>SC</option>
+                <option value="ST" <%= student.category === 'ST' ? 'selected' : ''%>>ST</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 px-2">
+            <div class="form-group">
+              <select
+                id="inputState"
+                name="student[bloodGroup]"
+                class="form-control" required
+              >
+                <option value="A+ve" <%= student.bloodGroup === 'A+ve' ? 'selected' : ''%>>A +ve</option>
+                <option value="A-ve" <%= student.bloodGroup === 'A-ve' ? 'selected' : ''%>>A +ve</option>
+                <option value="B+ve" <%= student.bloodGroup === 'B+ve' ? 'selected' : ''%>>B +ve</option>
+                <option value="B-ve" <%= student.bloodGroup === 'B-ve' ? 'selected' : ''%>>B -ve</option>
+                <option value="O+ve" <%= student.bloodGroup === 'O+ve' ? 'selected' : ''%>>O +ve</option>
+                <option value="O-ve" <%= student.bloodGroup === 'O-ve' ? 'selected' : ''%>>O -ve</option>
+                <option value="AB+ve" <%= student.bloodGroup === 'AB+ve' ? 'selected' : ''%>>AB +ve</option>
+                <option value="AB-ve" <%= student.bloodGroup === 'AB-ve' ? 'selected' : ''%>>AB -ve</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 p-2">
+            <div class="card bg-light border-dark card-body">
+              <h5 class="card-title">Address:</h5>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="student[address.streetAddress]"
+                  placeholder="Street Address"
+                  class="form-control"
+                  value="<%=student.address.streetAddress%>" required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="student[address.city]"
+                  placeholder="City"
+                  class="form-control"
+                  value="<%=student.address.city%>" required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  name="student[address.PIN]"
+                  placeholder="PIN"
+                  class="form-control"
+                  value="<%=student.address.PIN%>" required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 p-2">
+            <div class="card bg-light border-dark card-body">
+              <h5 class="card-title">Bank Details:</h5>
+              <div class="form-group">
+                <input
+                  type="number"
+                  name="student[bank.accNo]"
+                  placeholder="Account Number"
+                  class="form-control"
+                  value="<%=student.bank.accNo%>" required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="student[bank.IFSC]"
+                  placeholder="IFSC Code"
+                  class="form-control"
+                  value="<%=student.bank.IFSC%>" required
+                />
+              </div>
+            </div>
+            <a class="btn btn-sm btn-outline-secondary btn-block mt-3" href="/grades/<%=grade._id%>/students/<%=student._id%>/show">Cancel</a>
+          </div>
+        </div>
+          <input
+            type="submit"
+            class="form-group btn btn-primary btn-block"
+            value="Save"
+            id="bottomBtn"
+          />
+      </form>
+      <form
+              action="/grades/<%=grade._id%>/students/<%=student._id%>?_method=delete"
+              method="POST"
+            >
+              <input
+                type="submit"
+                class="btn btn-danger btn-block"
+                value="Delete"
+              />
+            </form>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer')%>

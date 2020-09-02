@@ -1,0 +1,128 @@
+<%- include('../partials/header') %> <% var
+i=0,boy=0,girl=0,obc=0,oec=0,st=0,sc=0,fc=0%>
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4 text-center">
+        <%=grade.std%> - <%=grade.division.toUpperCase()%>
+      </h1>
+      <hr class="my-4" />
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <h6 class="text-muted">
+                Number of Boys:<% for(const student of grade.students) { %> <%
+                if(student.gender == 'Boy'){ %> <% boy = boy + 1 %> <% } %> <% }
+                %> <%= boy %>
+              </h6>
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">
+                Number of Girls:<% for(const student of grade.students) { %> <%
+                if(student.gender == 'Girl'){ %> <% girl = girl + 1 %> <% } %>
+                <% } %> <%= girl %>
+              </h6>
+            </div>
+          </div>
+          <div class="card card-body bg-transparent p-3 mb-2">
+            <div class="row border-secondary">
+              <div class="col-md-6">
+                <h6 class="text-muted">
+                  OBC students:<% for(const student of grade.students) { %> <%
+                  if(student.category == 'OBC'){ %> <% obc = obc + 1 %> <% } %>
+                  <% } %> <%= obc %>
+                </h6>
+                <h6 class="text-muted">
+                  OEC students:<% for(const student of grade.students) { %> <%
+                  if(student.category == 'OEC'){ %> <% oec = oec + 1 %> <% } %>
+                  <% } %> <%= oec %>
+                </h6>
+                <h6 class="text-muted">
+                  ST students:<% for(const student of grade.students) { %> <%
+                  if(student.category == 'ST'){ %> <% st = st + 1 %> <% } %> <%
+                  } %> <%= st %>
+                </h6>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-muted">
+                  SC students:<% for(const student of grade.students) { %> <%
+                  if(student.category == 'SC'){ %> <% sc = sc + 1 %> <% } %> <%
+                  } %> <%= sc %>
+                </h6>
+                <h6 class="text-muted">
+                  FC students:<% for(const student of grade.students) { %> <%
+                  if(student.category == 'FC'){ %> <% fc = fc + 1 %> <% } %> <%
+                  } %> <%= fc %>
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h6 class="text-right text-muted">
+            Number of students: <% for(const student of grade.students) { %> <%
+            i=i+1 %> <% } %> <%= i %>
+          </h6>
+          <h6 class="float-right text-muted">Batch: <%=grade.year%></h6>
+        </div>
+      </div>
+
+      <a
+        href="/grades/<%=grade._id%>/students/new"
+        class="btn btn-primary btn-lg"
+        >Add New Student</a
+      >
+    </div>
+  </div>
+  <div class="row">
+    <% for(const student of grade.students) { %>
+    <div class="col-md-6 mb-4">
+      <div class="card bg-light border-dark">
+        <div class="clearfix mx-4 mt-4">
+          <h6 class="float-right text-muted">
+            Admission Number: <%=student.adNo%>
+          </h6>
+          <h5 class="card-title"><%=capitalize(student.name)%></h5>
+        </div>
+        <hr />
+        <div class="card-body">
+          <p class="card-text">Category: <%=student.category.toUpperCase()%></p>
+          <p class="card-text">Contact Number: <%=student.phoneNo%></p>
+          <p class="card-text">Aadhaar Number: <%=student.adharNo%></p>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 p-2">
+                <a
+                  href="/grades/<%=grade._id%>/students/<%=student._id%>/show"
+                  class="btn btn-info btn-block"
+                  >More Info.</a
+                >
+              </div>
+              <div class="col-md-6 p-2">
+                <form
+                  action="/grades/<%=grade._id%>/students/<%=student._id%>?_method=delete"
+                  method="POST"
+                  id=""
+                >
+                  <input
+                    type="submit"
+                    class="btn btn-danger btn-block"
+                    value="Delete"
+                    id=""
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<!-- alertify -->
+<script src="./scripts/alertify.min.js"></script>
+
+<%- include('../partials/footer') %>

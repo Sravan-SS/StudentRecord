@@ -1,0 +1,36 @@
+<%- include('./partials/header') %>
+
+<div class="container">
+  <h1 class="text-center">Log In</h1>
+  <div id="form">
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <input
+          type="text"
+          name="username"
+          class="form-control"
+          placeholder="Username"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="submit"
+          class="form-control btn btn-block btn-primary"
+          value="Log In"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

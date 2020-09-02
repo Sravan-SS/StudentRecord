@@ -1,0 +1,67 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lead">Student Records</p>
+      <div class="list-group">
+        <li class="list-group">
+          <a
+            href="/grades/new"
+            class="list-group-item list-group-item-action btn btn-primary active"
+            >Add New Class</a
+          >
+        </li>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <% for(const grade of grades.reverse()){ %> <%
+      if(grade.author.id.equals(currentUser._id)){ %>
+      <div class="card my-3">
+        <div class="card-body">
+          <div class="float-right text-secondary">Batch: <%=grade.year%></div>
+          <h5 class="card-title">
+            <%=grade.std%> - <%=grade.division.toUpperCase()%>
+          </h5>
+          <a href="/grades/<%=grade._id%>" class="btn btn-info mt-3"
+            >Show Class Details</a
+          >
+          <a href="/grades/<%=grade._id%>/edit" class="btn btn-primary mt-3"
+            >Edit Class</a
+          >
+          <form
+            action="/grades/<%=grade._id%>?_method=DELETE"
+            method="POST"
+            class="delete-form"
+            id="delForm"
+          >
+            <input
+              type="button"
+              class="btn btn-danger mt-3"
+              value="Delete Class"
+              id="delBtn"
+            />
+          </form>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >Last updated: <%= grade.date.toDateString() %></small
+          >
+        </div>
+      </div>
+      <% } %> <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- alertify -->
+<script src="./scripts/alertify.min.js"></script>
+<script type="text/javascript">
+  //override defaults
+  alertify.defaults.transition = 'zoom';
+  alertify.defaults.theme.ok = 'btn btn-sm btn-danger';
+  alertify.defaults.theme.cancel = 'btn btn-sm btn-secondary';
+</script>
+<script type="text/javascript" src="./scripts/alertify.js"></script>
+
+<%-include('../partials/footer') %>

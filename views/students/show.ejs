@@ -1,0 +1,170 @@
+<%-include('../partials/header')%>
+
+<div class="container">
+  <div class="card border-dark bg-light">
+    <div class="card-body">
+      <div class="clearfix">
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="card-title">
+              <strong><%=capitalize(student.name)%></strong>
+            </h5>
+          </div>
+          <div class="col-md-6">
+            <h6 class="ml-4 float-right text-muted">
+              Class: <%=grade.std%> - <%=grade.division%>
+            </h6>
+            <h6 class="float-right text-muted">
+              Gender: <%=student.gender%>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div class="row pb-1">
+        <div class="col-md-6 py-2">
+          <p class="card-text">
+            <strong>Adimssion Number: </strong><%=student.adNo%>
+          </p>
+        </div>
+        <div class="col-md-6 py-2">
+          <p class="card-text"><strong>Batch: </strong><%=grade.year%></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 py-2">
+          <p class="card-text">
+            <strong>Date Of Birth: </strong><%if(student.dateOfBirth){%>
+            <%=student.dateOfBirth.toDateString()%> <%}%>
+          </p>
+        </div>
+
+        <div class="col-md-6 py-2">
+          <p class="card-text">
+            <strong>Contact Number: </strong><%=student.phoneNo%>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 py-2">
+          <p class="card-text">
+            <strong>Aadhaar Number: </strong><%=student.adharNo%>
+          </p>
+        </div>
+        <div class="col-md-6 py-2">
+          <p class="card-text">
+            <strong>Date Of Admission: </strong><%if(student.dateOfAdmission){%>
+            <%=student.dateOfAdmission.toDateString()%> <%}%>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 py-2">
+          <p class="card-text"><strong>Father:</strong></p>
+          <div class="card bg-light border-dark">
+            <div class="card-body">
+              <p class="card-text">
+                <strong>Name: </strong><%=capitalize(student.father.name)%>
+              </p>
+              <p class="card-text">
+                <strong>Occupation: </strong
+                ><%=capitalize(student.father.occupation)%>
+              </p>
+              <p class="card-text">
+                <strong>Income: </strong><%=student.father.income%>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 py-2">
+          <p class="card-text"><strong>Mother:</strong></p>
+          <div class="card bg-light border-dark">
+            <div class="card-body">
+              <p class="card-text">
+                <strong>Name: </strong><%=capitalize(student.mother.name)%>
+              </p>
+              <p class="card-text">
+                <strong>Occupation: </strong
+                ><%=capitalize(student.mother.occupation)%>
+              </p>
+              <p class="card-text">
+                <strong>Income: </strong><%=student.mother.income%>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 py-2">
+          <p class="card-text">
+            <strong>Religion: </strong><%=capitalize(student.religion)%>
+          </p>
+        </div>
+        <div class="col-md-3 py-2">
+          <p class="card-text">
+            <strong>Caste: </strong><%=capitalize(student.caste)%>
+          </p>
+        </div>
+        <div class="col-md-3 py-2">
+          <p class="card-text">
+            <strong>Category: </strong><%=student.category.toUpperCase()%>
+          </p>
+        </div>
+        <div class="col-md-3 py-2">
+          <p class="card-text">
+            <strong>Blood Group: </strong><%if(student.bloodGroup !== 'AB+ve' &&
+            student.bloodGroup !== 'AB-ve'){%>
+            <%=student.bloodGroup.substring(0,1).toUpperCase()%><sup
+              ><%=student.bloodGroup.substring(1).toUpperCase()%></sup
+            >
+            <% } else { %>
+            <%=student.bloodGroup.substring(0,2).toUpperCase()%><sup
+              ><%=student.bloodGroup.substring(2).toUpperCase()%></sup
+            >
+            <% } %>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 py-2">
+          <p class="card-text"><strong>Address:</strong></p>
+          <div class="card bg-light border-dark">
+            <div class="card-body">
+              <p class="card-text">
+                <strong>City Address: </strong
+                ><%=capitalize(student.address.streetAddress)%>
+              </p>
+              <p class="card-text">
+                <strong>City: </strong><%=capitalize(student.address.city)%>
+              </p>
+              <p class="card-text">
+                <strong>PIN: </strong><%=capitalize(student.address.PIN)%>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 py-2">
+          <p class="card-text"><strong>Bank Account:</strong></p>
+          <div class="card flex-fill bg-light border-dark">
+            <div class="card-body">
+              <p class="card-text">
+                <strong>Account Number: </strong><%=student.bank.accNo%>
+              </p>
+              <p class="card-text">
+                <strong>IFDC Code: </strong><%=student.bank.IFSC%>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        href="/grades/<%=grade._id%>/students/<%=student._id%>/edit"
+        class="form-group btn btn-primary btn-block mt-4"
+        id="bottomBtn"
+        >Edit</a
+      >
+    </div>
+  </div>
+</div>
+
+<%-include('../partials/footer')%>

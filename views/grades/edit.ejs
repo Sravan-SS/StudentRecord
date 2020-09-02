@@ -1,0 +1,49 @@
+<%- include ('../partials/header') %>
+
+<div class="container">
+  <h1 id="head">Edit Class Details%></h1>
+  <div id="form">
+    <form action="/grades/<%=grade._id%>?_method=PUT" method="POST">
+      <div class="form-group">
+        <input
+          type="number"
+          name="grade[std]"
+          placeholder="Class"
+          class="form-control"
+          value="<%=grade.std%>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="grade[division]"
+          placeholder="Division"
+          class="form-control"
+          value="<%=grade.division.toUpperCase()%>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="grade[year]"
+          placeholder="Batch"
+          class="form-control"
+          value="<%=grade.year%>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="submit"
+          class="btn btn-lg btn-primary btn-block"
+          value="Submit"
+        />
+      </div>
+    </form>
+    <a href="/grades">Go Back</a>
+  </div>
+</div>
+
+<%- include ('../partials/footer') %>
