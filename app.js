@@ -20,16 +20,15 @@ var Grade = require('./models/grades'),
   User = require('./models/user');
 
 // mongoose
+const url =
+  process.env.DATABASEURL || 'mongodb://localhost:27017/student_record';
 mongoose
-  .connect(
-    'mongodb+srv://Sravan:saranga1999@cluster0.dtfet.mongodb.net/student_record?retryWrites=true&w=majority',
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    }
-  )
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
   .then(() => console.log('DATABASE CONNECTED!'))
   .catch((err) => console.log('ERROR: ', err.message));
 
